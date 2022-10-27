@@ -1,5 +1,6 @@
 package com.stackroute.newz.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,4 +91,5 @@ public class UserProfileServiceImpl implements UserProfileService {
 	public List<UserProfile> getAllUserProfiles() {
 		return userprofileRepo.findAll();
 	}
+
 }

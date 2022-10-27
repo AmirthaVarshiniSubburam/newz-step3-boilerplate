@@ -10,8 +10,10 @@ public class UserProfileNotExistsException extends Exception {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	public UserProfileNotExistsException(String message){
         super(message);
-    }
+	}
+	
 	
 }

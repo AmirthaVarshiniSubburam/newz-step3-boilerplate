@@ -32,6 +32,7 @@ import com.stackroute.newz.util.exception.UserProfileNotExistsException;
  * 
  * Please note that the default path to use this controller should be "/api/v1/news"
  */
+
 @RestController
 @RequestMapping("/api/v1")
 public class UserProfileController {

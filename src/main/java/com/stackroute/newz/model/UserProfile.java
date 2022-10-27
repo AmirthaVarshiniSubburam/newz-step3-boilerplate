@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,7 +33,7 @@ public class UserProfile {
 	 * This class should have six fields
 	 * (newsId,firstName,lastName, contact,createAt,newsList). 
 	 * Out of these six fields, the
-	 * field newsId should be primary key and auto-generated. This class should
+	 * field userId should be primary key and auto-generated. This class should
 	 * also contain the getters and setters for the fields along with the no-arg ,
 	 * parameterized constructor and toString method. 
 	 * annotate newsList field with @OneToMany and add
@@ -114,7 +116,4 @@ public class UserProfile {
 	public void setNewsList(List<News> newsList) {
 		this.newsList = newsList;
 	}
-	
-	
-	
-	}
+}

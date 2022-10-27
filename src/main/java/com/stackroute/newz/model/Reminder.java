@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
@@ -23,6 +24,7 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  * If it finds any, then it will begin the process of looking through that particular 
  * Java object to recreate it as a table in your database.
  */
+
 @Entity
 @Table(name = "Reminder")
 public class Reminder {
@@ -82,4 +84,5 @@ public class Reminder {
 	public void setNews(News news) {
 		this.news = news;
 	}
+
 }

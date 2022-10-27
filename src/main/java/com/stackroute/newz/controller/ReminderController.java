@@ -34,6 +34,7 @@ import com.stackroute.newz.util.exception.ReminderNotExistsException;
 @RestController
 @RequestMapping("/api/v1")
 public class ReminderController {
+
 	/*
 	 * Autowiring should be implemented for the ReminderService. Please note that we
 	 * should not create any object using the new keyword
@@ -166,4 +167,4 @@ public class ReminderController {
 			return new ResponseEntity<Reminder>(HttpStatus.NOT_FOUND);
 		}
 	}
-	}
+}

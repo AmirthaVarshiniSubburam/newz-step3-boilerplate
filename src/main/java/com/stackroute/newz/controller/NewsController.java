@@ -1,9 +1,9 @@
 package com.stackroute.newz.controller;
 
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +36,10 @@ import com.stackroute.newz.util.exception.NewsNotExistsException;
 @RequestMapping("/api/v1")
 public class NewsController {
 
+	/*
+	 * Autowiring should be implemented for the NewsService. Please note that we
+	 * should not create any object using the new keyword
+	 */
 	@Autowired
 	private NewsService newsService;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
