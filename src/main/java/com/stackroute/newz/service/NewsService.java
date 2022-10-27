@@ -1,7 +1,6 @@
 package com.stackroute.newz.service;
 
 import java.util.List;
-
 import com.stackroute.newz.model.News;
 import com.stackroute.newz.util.exception.NewsAlreadyExistsException;
 import com.stackroute.newz.util.exception.NewsNotExistsException;

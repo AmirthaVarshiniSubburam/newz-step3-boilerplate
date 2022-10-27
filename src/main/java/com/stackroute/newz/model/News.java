@@ -5,16 +5,15 @@ import java.time.LocalDateTime;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
@@ -27,6 +26,8 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  * Java object to recreate it as a table in your database.
  */
 
+@Entity
+@Table(name = "News")
 public class News {
 
 	/*
@@ -43,124 +44,123 @@ public class News {
 	 * Please add @JsonSerialize(using = ToStringSerializer.class) for this field
 	 */
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer newsId;
+	private String title;
+	private String author;
+	private String description;
 	
+	@JsonSerialize(using = ToStringSerializer.class)
+	private LocalDateTime publishedAt;
+	private String content;
+	private String url;
+	private String urlToImage;
 	
+	@ManyToOne(cascade= CascadeType.ALL)
+    @JoinColumn(name = "userId")
+	@JsonIgnore
+	private UserProfile user;
 	
-	public News(int newsId, String title, String author, String description, LocalDateTime publishedAt, String content,
-			String url, String urlToImage, UserProfile user, Reminder reminder) {
-		
-		
-	}
-	
-	
-	/**
-	 * @return the newsID
-	 */
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "news")
+	@JsonIgnore
+	private Reminder reminder;
 	
 	public News() {
-		
+		this.publishedAt = LocalDateTime.now();
+	}
+	
+	public News(Integer newsId, String title, String author, String description, LocalDateTime publishedAt,
+			String content, String url, String urlToImage, UserProfile user, Reminder reminder) {
+		super();
+		this.newsId = newsId;
+		this.title = title;
+		this.author = author;
+		this.description = description;
+		this.content = content;
+		this.url = url;
+		this.urlToImage = urlToImage;
+		this.user = user;
+		this.reminder = reminder;
+	}
+	
+	public Integer getNewsId() {
+		return newsId;
 	}
 
+	public void setNewsId(Integer newsId) {
+		this.newsId = newsId;
+	}
 
-	/**
-	 * @return the title
-	 */
 	public String getTitle() {
-		return null;
+		return title;
 	}
-	/**
-	 * @return the newsID
-	 */
-	public int getNewsId() {
-		return 0;
-		
-	}
-	/**
-	 * @param newsID the newsID to set
-	 */
-	public void setNewsId(int newsId) {
-		
-	}
-	/**
-	 * @param title the title to set
-	 */
-	public void setTitle(String title) {
-		
-	}
-	/**
-	 * @return the url
-	 */
-	public String getUrl() {
-		return null;
-	}
-	/**
-	 * @param url the url to set
-	 */
-	public void setUrl(String url) {
-		
-	}
-	/**
-	 * @return the urlToImage
-	 */
-	public String getUrlToImage() {
-		return null;
-	}
-	/**
-	 * @param urlToImage the urlToImage to set
-	 */
-	public void setUrlToImage(String urlToImage) {
-		
-	}
-	/**
-	 * @return the author
-	 */
-	public String getAuthor() {
-		return null;
-	}
-	/**
-	 * @param author the author to set
-	 */
-	public void setAuthor(String author) {
-		
-	}
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return null;
-	}
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		
-	}
-	/**
-	 * @return the publishedAt
-	 */
-	public LocalDateTime getPublishedAt() {
-		return null;
-	}
-	/**
-	 * @param publishedAt the publishedAt to set
-	 */
-	public void setPublishedAt(LocalDateTime publishedAt) {
-		
-	}
-	/**
-	 * @return the content
-	 */
-	public String getContent() {
-		return null;
-	}
-	/**
-	 * @param content the content to set
-	 */
-	public void setContent(String content) {
-		
-	}
-	
 
-	
-	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public LocalDateTime getPublishedAt() {
+		return publishedAt;
+	}
+
+	public void setPublishedAt(LocalDateTime publishedAt) {
+		this.publishedAt = publishedAt;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	public String getUrlToImage() {
+		return urlToImage;
+	}
+
+	public void setUrlToImage(String urlToImage) {
+		this.urlToImage = urlToImage;
+	}
+
+	public UserProfile getUser() {
+		return user;
+	}
+
+	public void setUser(UserProfile user) {
+		this.user = user;
+	}
+
+	public Reminder getReminder() {
+		return reminder;
+	}
+
+	public void setReminder(Reminder reminder) {
+		this.reminder = reminder;
+	}
 }

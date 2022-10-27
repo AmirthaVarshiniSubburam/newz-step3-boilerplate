@@ -3,9 +3,12 @@ package com.stackroute.newz.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,6 +24,8 @@ import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
  * Java object to recreate it as a table in your database.
  */
 
+@Entity
+@Table(name = "UserProfile")
 public class UserProfile {
 	/*
 	 * This class should have six fields
@@ -36,70 +41,80 @@ public class UserProfile {
 	 * Please add @JsonSerialize(using = ToStringSerializer.class) for this field
 	 */
 	
+	@Id
+	private String userId;
+	private String firstName;
+	private String lastName;
+	private String contact;
+	@JsonSerialize(using = ToStringSerializer.class)
+	private LocalDateTime createAt;
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="user",cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<News> newsList;
+	
+	public UserProfile() {
+		super();
+	}
 
-	
-	
-	
 	public UserProfile(String userId, String firstName, String lastName, String contact, LocalDateTime createAt,
 			List<News> newsList) {
-	
-		
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.contact = contact;
+		this.createAt = createAt;
+		this.newsList = newsList;
 	}
 
-	public UserProfile() {
-		
-	}
-
-	
-	public String getContact() {
-		return null;
-	}
-
-	
-	public void setContact(String contact) {
-		
-	}
-
-	
-	public LocalDateTime getCreateAt() {
-		return null;
-	}
-
-	
-	public void setCreateAt(LocalDateTime createAt) {
-		
-	}
-
-	
 	public String getUserId() {
-		return null;
+		return userId;
 	}
 
-	
 	public void setUserId(String userId) {
-		
+		this.userId = userId;
 	}
 
-	
 	public String getFirstName() {
-		return null;
+		return firstName;
 	}
 
-	
 	public void setFirstName(String firstName) {
-		
+		this.firstName = firstName;
 	}
 
-	
 	public String getLastName() {
-		return null;
+		return lastName;
 	}
 
-	
 	public void setLastName(String lastName) {
-		
+		this.lastName = lastName;
 	}
 
-	
+	public String getContact() {
+		return contact;
+	}
 
-}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
+	public LocalDateTime getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(LocalDateTime createAt) {
+		this.createAt = createAt;
+	}
+
+	public List<News> getNewsList() {
+		return newsList;
+	}
+
+	public void setNewsList(List<News> newsList) {
+		this.newsList = newsList;
+	}
+	
+	
+	
+	}
